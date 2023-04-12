@@ -20,3 +20,19 @@ CREATE TABLE dbo.Family(
  Surname VARCHAR(50),
  BudgetValue INT NOT NULL
 );
+
+
+CREATE TABLE dbo.Basket(
+ IDidentity INT,
+ ID_SKU INT  CONSTRAINT id_sky_fk references dbo.SKU(IDidentity),
+ ID_Family  INT CONSTRAINT id_family_fk references dbo.Family(IDidentity),
+ Quantity INT,
+ Value DECIMAL(18,2),
+ PurchaseDate DATETIME CONSTRAINT df_basket_purchaseDate DEFAULT(GETDATE()),
+ Discountvalue DECIMAL(18,2)
+);
+
+ALTER TABLE dbo.Basket
+ADD CONSTRAINT ch_basket_quantity CHECK ( Quantity >= 0 AND Value >= 0 );
+
+
