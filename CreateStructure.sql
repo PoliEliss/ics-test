@@ -27,7 +27,7 @@ CREATE TABLE dbo.Basket(
  ID_SKU INT  CONSTRAINT id_sky_fk references dbo.SKU(IDidentity),
  ID_Family  INT CONSTRAINT id_family_fk references dbo.Family(IDidentity),
  Quantity INT,
- Value DECIMAL(18,2),
+ Value INT,
  PurchaseDate DATETIME CONSTRAINT df_basket_purchaseDate DEFAULT(GETDATE()),
  Discountvalue DECIMAL(18,2)
 );
