@@ -5,7 +5,7 @@ CREATE TABLE dbo.SKU(
  Name VARCHAR(60) NOT NULL
   );
 
-CREATE TRIGGER trigger_change_cod
+CREATE TRIGGER trigger_change_cod_insert
  ON dbo.SKU
  AFTER INSERT
  AS 
@@ -14,6 +14,14 @@ CREATE TRIGGER trigger_change_cod
  SET Code = 's' + CAST(IDidentity as VARCHAR(30)) from  dbo.SKU
  END;
 
+ CREATE TRIGGER dbo.trigger_change_cod_update
+ ON [dbo].[SKU]
+ AFTER UPDATE
+ AS 
+ BEGIN
+ UPDATE dbo.SKU
+ SET Code = 's' + CAST(IDidentity as VARCHAR(30)) from  dbo.SKU
+ END;
 
 CREATE TABLE dbo.Family(
  IDidentity INT CONSTRAINT family_ididentity_pk PRIMARY KEY,
